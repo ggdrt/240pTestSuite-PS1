@@ -1,4 +1,4 @@
-CDLIC_FILE = /usr/local/psxsdk/share/licenses/infoeur.dat
+CDLIC_FILE = /usr/local/psxsdk/share/licenses/infousa.dat
 
 all:
 	mkdir -p cd_root
@@ -161,9 +161,9 @@ all:
 	bin2c lagper < patterns/lagper.lz4 > ./patterns/lagper.c
 	bin2c back < patterns/back.lz4 > ./patterns/back.c
 	bin2c backw256 < patterns/backw256.lz4 > ./patterns/backw256.c
-	bin2c beep < resources/beep.raw> ./resources/beep.h
-	bin2c gillian < patterns/gillian.lz4> ./patterns/gillian.c
-	bin2c convergence < patterns/convergence.lz4> ./patterns/convergence.c
+	bin2c beep < resources/beep.raw > ./resources/beep.h
+	bin2c gillian < patterns/gillian.lz4 > ./patterns/gillian.c
+	bin2c convergence < patterns/convergence.lz4 > ./patterns/convergence.c
 	#############################
 	psx-gcc  -Wall -O3 -o 240p.elf 240p.c patterns.c tests.c font.c lz4.c textures.c help.c sg_string.c
 	elf2exe 240p.elf 240p.exe
@@ -173,7 +173,10 @@ all:
 	cd ./binary && mkpsxiso 240p.hsf 240pTestSuitePS1.bin $(CDLIC_FILE);
 	rm -f ./binary/240p.hsf
 	rm -f 240p.elf
-	rm -f 240p.exe
+	mv 240p.exe ./binary/240p.exe
 clean:
-	rm -f 240pTestSuitePS1.bin 240pTestSuitePS1.cue 240p.exe 240p.elf
+	rm -rf ./binary
+	rm -f 240p.exe 240p.elf
 	rm -fr cd_root patterns
+	rm -f ./tools/lz4compress
+	rm -f ./resources/beep.h ./resources/beep.raw
