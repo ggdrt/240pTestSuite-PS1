@@ -1,0 +1,6 @@
+/binary/
+/cd_root/
+/patterns/
+/resources/*
+!/resources/beep.wav
+/tools/lz4compress
