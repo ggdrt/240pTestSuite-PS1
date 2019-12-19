@@ -154,7 +154,6 @@ void set_screen(unsigned short x_res, unsigned short y_res, unsigned char VMODE,
 		GsSetDispEnvSimple(0, dbuf ? 0 : 256);
 		GsSetDrawEnvSimple(0, dbuf ? 256 : 0, x_res, 256);
 		GsSetVideoModeEx(x_res, 240, VMODE, 0, interlaced, 0);
-		gpu_ctrl(6, 0xC60260); //set horiz range manually to override GsSetVideoModeEx
 }
 
 void draw_list()
@@ -188,7 +187,6 @@ void video_options()
 		GsSortCls(0, 0, 0);
 		set_screen(x_res, 240, VMODE, interlaced);
 		GsSetVideoModeEx(x_res, 240, VMODE, 0, interlaced, 0);
-		gpu_ctrl(6, 0xC60260); //set horiz range manually to override GsSetVideoModeEx
 
 		draw_background();
 
@@ -256,7 +254,6 @@ int main()
 	GsSetList(prim_list);
 	GsClearMem();
 	GsSetVideoMode(x_res, y_res, VMODE);
-	gpu_ctrl(6, 0xC60260); //set horiz range manually to override GsSetVideoMode
 	load_custom_font();
 	load_background();
 	SsUpload(&beep_array, 960, SPU_DATA_BASE_ADDR); //Upload beep sound to sound ram
