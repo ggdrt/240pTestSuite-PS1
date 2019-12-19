@@ -173,6 +173,7 @@ all:
 	cd ./binary && mkpsxiso 240p.hsf 240pTestSuitePS1-libretro.bin $(CDLIC_FILE);
 	rm -f ./binary/240p.hsf
 	rm -f 240p.elf
+	rm -f 240p.exe
 	cp LICENSE.txt ./binary/240pTestSuitePS1-libretro-LICENSE.txt
 	cp README.md ./binary/240pTestSuitePS1-libretro-README.md
 clean:
